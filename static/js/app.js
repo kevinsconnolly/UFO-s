@@ -1,17 +1,17 @@
-// import the data from data.js
+// import data.js data
 const tableData = data;
 // Reference the HTML table using d3
 var tbody = d3.select("tbody");
 function buildTable(data) {
   // First, clear out any existing data
   tbody.html("");
-  // Next, loop through each object in the data
-  // and append a row and cells for each value in the row
+  // loop data objects
+  // add a row and cells for each value in the row
   data.forEach((dataRow) => {
-    // Append a row to the table body
+    // add a row to body table
     let row = tbody.append("tr");
-    // Loop through each field in the dataRow and add
-    // each value as a table cell (td)
+    // Loop through unique dataRow field & add each
+    // value as a table cell (td)
     Object.values(dataRow).forEach((val) => {
       let cell = row.append("td");
       cell.text(val);
@@ -46,12 +46,12 @@ function filteredTable() {
     filteredData = filteredData.filter(row => row.shape === shape);
   }
 
-// Rebuild the table using the filtered data
-// @NOTE: If no date was entered, then filteredData will
-// just be the original tableData.
+// Rebuild table using the filtered data
+// stipulation: no data filtered, then filteredData will
+// return to original tableData.
 buildTable(filteredData);
 }
 d3.selectAll("#filter-btn").on("click", filteredTable);
 
-// Build the table when the page loads
+// Build table after page loads
 buildTable(tableData);
